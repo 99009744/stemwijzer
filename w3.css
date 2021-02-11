@@ -75,3 +75,8 @@ i{
     height: 75px;
     width: 300px;
 }
+#questionBox{
+    height: 500px;
+    width: 500px;
+    background-color: aqua;
+}

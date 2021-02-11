@@ -7,28 +7,30 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins" rel="stylesheet"> 
-
+    
 </head>
 
 <body>
     <div id="container">
-        <div id="startscreen" class="startSchrerenContent">
+        <div id="startscreen" class="startSchermContent">
             <img src="stemwijzer.png" id="logo">
             <h1 id="title">StemWijzer Tweede Kamer 2017</h1>
             <h1 id="info">Test uw politieke voorkeur aan de hand van 30 stellingen</h1>
             <i class="fas fa-universal-access"></i> <p class="startschreenInfo">Bekijk de toegankelijke versie voor mensen met een visuele beperking</p>
-            <button id="start">Start</button><br>
+            <button id="start" onclick="start()">Start</button><br>
             <i class="fas fa-lock"></i> <p class="startschreenInfo">De StemWijzer maakt gebruik van cookies. Klik hier voor de volledige privacy statement</p>  
         </div>
-        <div id="tracker" class="startSchrerenContent">
+        <div id="tracker" class="startSchermContent">
             <h1>Of blik terug met de <span style="color:gray">Stemmen</span>Trackker</h1><br>
             <p id="trackerInfo">Wat hebben de partijen in het verleden waargemaakt van hun verkiezingsbeloften? 'Tracker' uw stem met de Stemmentracker, Een website die terugblikt op 30 Tweede Kamerstemmingen van de afgelopen regeerperiode. Met welke partij stemde u mee?</p>
         </div>
-        <div id="footer" class="startSchrerenContent">
+        <div id="footer" class="startSchermContent">
             <img src="1v.png" id="eenVandaag">
         </div>
     </div>
-<script src="js.js">  </script>
+    <script type="text/javascript" src="testdata.js"></script>
+    <script type="text/javascript" src="js.js"></script>
+    
 </body>
 </html>
 
