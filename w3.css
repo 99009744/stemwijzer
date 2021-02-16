@@ -3,12 +3,16 @@ body{
     background-size: cover;
     font-family: 'Poppins', sans-serif;
 }
-#container{
+.container{
     background-color: white;
     height: 800px;
     width: 1200px;
     margin: 0 auto;
     position: relative;
+}
+
+#questions_container{
+    display: none;
 }
 #startscreen{
 
@@ -22,7 +26,7 @@ body{
     padding-top: 50px;
     margin-left: 200px;
 }
-#info{
+#info_StartScreen{
     color: #01B4DC;
     margin-left: 200px;
 }
@@ -79,4 +83,67 @@ i{
     height: 500px;
     width: 500px;
     background-color: aqua;
+}
+#vorige{
+    height: 75px;
+    width: 75px;
+    border-radius: 50%;
+    background-color: lightgray;
+    margin: 10px;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    border: black solid 2px;
+    display: none;
+}
+#terugButton{
+    margin: 0px;
+    font-size: 64px;
+    color: black;
+    
+}
+#title_questions{
+    font-size: 36px;
+    color: #01B4DC;
+    position: relative;
+    top: 100px;
+    left: 80px;
+}
+#statement_questions{
+    font-size: 36px;
+    color: black;
+    position: relative;
+    top: 120px;
+    left: 80px;
+    width: 800px;
+}
+#buttons{
+    position: relative;
+    left: 200px;
+    top: 300px;
+}
+.nextButtons{
+    width: 200px;
+    height: 75px;
+    background-color: black;
+    color: white;
+    font-size: 24px;
+}
+.nextButtons:hover{
+    background-color: #01B4DC;
+    color: black;
+}
+#skip{
+    font-size: 24px;
+    color: grey;
+    background-color: white;
+    border: 0px;
+}
+#skipButton{
+    margin: 0;
+    width: auto;
+    height: auto;
+    color: black;
+    font-size: 24px;
+    color: grey;
 }
