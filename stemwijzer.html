@@ -31,14 +31,14 @@
 
     <body>
         <div class="container" id="questions_container">
-           <button id="vorige" onclick="back()"><i id="terugButton" class="fas fa-arrow-left"></i></button>
+           <button id="vorige" onclick="buttons(this)" value="back"><i id="terugButton" class="fas fa-arrow-left"></i></button>
            <h1 id="title_questions"></h1>
            <h1 id="statement_questions"></h1>
            <div id="buttons">
-               <button id="eens" onclick="buttonAnswer(this)" class="nextButtons" value="pro">Eens</button>
-               <button id="geenvanbeide" onclick="buttonAnswer(this)" class="nextButtons" value="none">Geen van beide</button>
-               <button id="oneens" onclick="buttonAnswer(this)" class="nextButtons" value="contra">Oneens</button>
-               <button id="skip" onclick="buttonAnswer(this)" value="skip">Sla deze vraag over <i class="fas fa-arrow-right" id="skipButton"></i></button>
+               <button id="eens" onclick="buttons(this)" class="nextButtons" value="pro">Eens</button>
+               <button id="geenvanbeide" onclick="buttons(this)" class="nextButtons" value="none">Geen van beide</button>
+               <button id="oneens" onclick="buttons(this)" class="nextButtons" value="contra">Oneens</button>
+               <button id="skip" onclick="buttons(this)" value="skip">Sla deze vraag over <i class="fas fa-arrow-right" id="skipButton"></i></button>
            </div>
         </div>
     <script type="text/javascript" src="testdata.js"></script>
