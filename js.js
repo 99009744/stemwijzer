@@ -53,38 +53,39 @@ function buttons(button_Value){
     }
 }
 
-function checkResults(){
-    for( j=0; j<subjects.length; j++){
-        for (const party_info of parties){
-            console.log(party_info);
-            for( i=0; i<subjects.length; i++){
-                if(party_info["name"] == subjects[j]["parties"][i]["name"]){
-                    subjects[j]["parties"][i]["name"];
-                }
-            else{
-                    console.log("niet gelijk");
-                }
+// checks the statements the party gave on the questions
+function getStatementsByPartyName(party){
+    var uitslag = [];
+    for(j=0; j<subjects.length; j++){
+        for(i=0; i<subjects.length; i++){
+            if (party == subjects[j]["parties"][i]["name"]){
+                uitslag.push(subjects[j]["parties"][i]["position"]);
             }
         }
     }
+    return uitslag;
+}
+// gets the party names by the value from checkResults
+function getPartyName(value){
+    var party = [];
+    for(i=value; i<=value; i++){
+        party.push(parties[i]["name"]);
+    }
+    return party;
 }
 
-// niet tevreden met deze code want denk niet dat ik hem werkend krijg, houw hem nog even bij voor zekerheid :).
-// function checkResults(){
-//     // Loops to get the names.
-//     for( i=0; i<parties.length; i++ ){
-//         // Loops to get the position the party has chosen.
-//         for(j=0; j<parties.length; j++){
-//             var party = Object.values([parties[i]["name"]]);
-//             // checks if party name is the same as the name of the answer so we can filter them.
-//             if(subjects[i]["parties"][j]["name"] == party){
-//                 console.log(party, " ", subjects[j]["parties"][j]["position"]);
-//             }
-//             else{
-//                 console.log("niet gelijk");
-//             }
-//             // console.log(subjects[j]["parties"][j]["position"]);
-             
-//         }
-//     }
-// }
+// Makes a loop for each party in parties.
+// Calls getPartyName and getStatementsByPartyName to get their info.
+// Puts the info in an array
+function checkResults(){
+    var partiesAndStatements = [];
+    var i = 0;
+    parties.forEach(element => {
+        var party = getPartyName(i);
+        var uitslag = getStatementsByPartyName(party);
+        partiesAndStatements.push(party);
+        party.push(uitslag); 
+        i++;
+    });
+    console.log(partiesAndStatements);
+}
