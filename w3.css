@@ -118,9 +118,9 @@ i{
     width: 800px;
 }
 #buttons{
-    position: relative;
+    position: absolute;
     left: 200px;
-    top: 300px;
+    bottom: 100px;
 }
 .nextButtons{
     width: 200px;

@@ -56,9 +56,9 @@ function buttons(button_Value){
 // checks the statements the party gave on the questions
 function getStatementsByPartyName(party){
     var uitslag = [];
-    for(j=0; j<subjects.length; j++){
-        for(i=0; i<subjects.length; i++){
-            if (party == subjects[j]["parties"][i]["name"]){
+    for(j=0; j<subjects.length; j++){ // loops questions
+        for(i=0; i<subjects[j].parties.length; i++){ // loop parties
+            if (party == parties[i]["name"]){
                 uitslag.push(subjects[j]["parties"][i]["position"]);
             }
         }
@@ -80,7 +80,7 @@ function getPartyName(value){
 function checkResults(){
     var partiesAndStatements = [];
     var i = 0;
-    parties.forEach(element => {
+    parties.forEach(element => { // could have used element as var party but it made objects instead of arrays.
         var party = getPartyName(i);
         var uitslag = getStatementsByPartyName(party);
         partiesAndStatements.push(party);
@@ -89,3 +89,27 @@ function checkResults(){
     });
     console.log(partiesAndStatements);
 }
+
+function comparingResults(){
+    
+}
+// function getStatementsByPartyName(party){
+//     var uitslag = [];
+//     var i = 0;
+//     var j = 0;
+//     subjects.forEach(subject => {
+//         parties.forEach(element => {
+//             if (party == parties[i]["name"]){
+//                 uitslag.push(subjects[j]["parties"][i]["position"]);
+//                 if (j > 1 ){
+//                     console.log("i = ", i);
+//                 }
+//             } 
+//             i++
+//         });
+//         console.log("j = ", j);
+//         console.log(uitslag);
+//         j++
+//         i=0;
+//     });
+//     return uitslag;
