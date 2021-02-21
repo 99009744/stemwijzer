@@ -28,6 +28,11 @@ function next_Question(){
 function buttons(button_Value){
     if(button_Value.value == "back"){
         counter --;
+        var buttonsColor = document.getElementsByClassName("nextButtons");
+        for (let item of buttonsColor) {
+            item.style.backgroundColor = 'black'; 
+            }
+        document.getElementById(answer[counter]["statement"]).style.backgroundColor = "#01B4DC";
         // removes the last object from the array
         answer.pop();
         title_questions.innerHTML = subjects[counter]['title'];
@@ -43,6 +48,10 @@ function buttons(button_Value){
         // puts the value behind in the array
         answer.push({statement:button_Value.value});
         counter++;
+        var buttonsColor = document.getElementsByClassName("nextButtons");
+        for(var i = 0; i < buttonsColor.length; i++){
+            buttonsColor[i].style.backgroundColor = "black";
+        }
         // checks if we are on the end of the questions or that we need the results.
         if(counter == subjects.length){
             checkResults();
@@ -50,6 +59,12 @@ function buttons(button_Value){
         else{
             next_Question();
         }
+    }
+}
+function colorChange(){
+    var buttonsColor = document.getElementsByClassName("nextButtons");
+    for (let item of limbs) {
+        item.style.backgroundColor = 'black'; 
     }
 }
 
@@ -73,7 +88,6 @@ function getPartyName(value){
     }
     return party;
 }
-
 // Makes a loop for each party in parties.
 // Calls getPartyName and getStatementsByPartyName to get their info.
 // Puts the info in an array
@@ -93,23 +107,3 @@ function checkResults(){
 function comparingResults(){
     
 }
-// function getStatementsByPartyName(party){
-//     var uitslag = [];
-//     var i = 0;
-//     var j = 0;
-//     subjects.forEach(subject => {
-//         parties.forEach(element => {
-//             if (party == parties[i]["name"]){
-//                 uitslag.push(subjects[j]["parties"][i]["position"]);
-//                 if (j > 1 ){
-//                     console.log("i = ", i);
-//                 }
-//             } 
-//             i++
-//         });
-//         console.log("j = ", j);
-//         console.log(uitslag);
-//         j++
-//         i=0;
-//     });
-//     return uitslag;
