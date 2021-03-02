@@ -14,6 +14,9 @@ body{
 #questions_container{
     display: none;
 }
+#results_container{
+    display: none;
+}
 #startscreen{
 
     height: auto;
@@ -129,9 +132,9 @@ i{
     color: white;
     font-size: 24px;
 }
-.nextButtons:hover{
-    background-color: #01B4DC;
-    color: black;
+.nextButtons:hover{ 
+    background-color: #01B4DC !important; 
+    color: black !important;
 }
 #skip{
     font-size: 24px;
@@ -146,4 +149,21 @@ i{
     color: black;
     font-size: 24px;
     color: grey;
+}
+#resultsTitle{
+    font-size: 36px;
+    position: relative;
+    top: 10px;
+    left: 30px;
+}
+#results{
+    width: 1100px;
+    height: 500px;
+    margin: 0 auto;
+    position: relative;
+}
+.parties{
+    font-size: 16px;
+    width: 400px;
+    display: inline-block;
 }
