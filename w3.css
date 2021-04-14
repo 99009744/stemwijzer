@@ -10,11 +10,7 @@ body{
     margin: 0 auto;
     position: relative;
 }
-
-#questions_container{
-    display: none;
-}
-#results_container{
+#questions_container,#results_container,#inportant_container{
     display: none;
 }
 #startscreen{
