@@ -11,57 +11,36 @@ var partiesPoints = []; // Makes an array with objects with name and points of e
 var counter = 0; // Gonna help me switch between the questions.
 var selected_questions = [];
 
+/**
+ * Starts the application, takes you to the question screen
+ * Shows the container you need
+ * Hides the container you dont need to have
+ * Calls next_Question to show the questions
+ */
 function start(){
+    var titleStartScreen = document.getElementById("info_StartScreen");
+    titleStartScreen.innerHTML = "Test uw politieke voorkeur aan de hand van " + subjects.length + " stellingen";
+    
+}
+start();
+function goToQuestions(){
     start_screen.style.display = "none";
-    inportant_screen.style.display = "block";
-    
-    inportant_form();
-    
-}
-function inportant_form(){
-    var inportant_container = document.getElementById("inportant_container");
-    subjects.forEach(subject => {  
-        var checkbox = document.createElement('input'); 
-        checkbox.type = "checkbox"; 
-        checkbox.name = "name"; 
-        checkbox.value = "value"; 
-        checkbox.id = subject.title; 
-
-        var label = document.createElement('label');
-        label.id = "label";
-        label.innerHTML = subject.title;
-        inportant_container.appendChild(checkbox); 
-        inportant_container.appendChild(label);
-    });
-    var inportant_button = document.createElement('button');
-    inportant_button.innerHTML = "next";
-    inportant_button.id = "next_btn_form";
-    inportant_button.onclick = function(){
-        save_inport_form();
-    };
-    inportant_container.appendChild(inportant_button);
-}
-function save_inport_form(){
-    var inport_form = document.getElementById("inportant_container");
-    //Reference all the CheckBoxes in Table.
-    var checks = inport_form.getElementsByTagName("input");
-    for (var i = 0; i < checks.length; i++) {
-        if (checks[i].checked) {
-            selected_questions.push(checks[i].id);
-        }
-    }
-    //Display the selected CheckBox values.
-    if (selected_questions.length > 0) {
-        console.log(selected_questions);
-    }
     questions_screen.style.display = "block";
-    inportant_screen.style.display = "none";
     next_Question();
 }
-
+/**
+ * Put the current subject in the HTML
+ * Calls the function chckBackButton
+ */
 function next_Question(){
     title_questions.innerHTML = subjects[counter]['title'];
     statement_questions.innerHTML = subjects[counter]['statement'];
+    checkBackButton();
+}
+/**
+ * Checks if the back button need to be visible
+ */
+function checkBackButton(){
     if( counter == 0 ){
         backbutton.style.display = "none";
     }
@@ -69,7 +48,11 @@ function next_Question(){
         backbutton.style.display = "inline";
     }
 }
-
+/**
+ * 
+ * @param {string} button_Value gets the value of the button you clicked
+ * Checks what the value is so it can do what it needs to do
+ */
 // takes the value from the botton, if its back it returns to the last question otherwise it pushes the value in an array
 function buttons(button_Value){
     if(button_Value.value == "back"){
@@ -121,7 +104,7 @@ function buttons(button_Value){
         }
         // checks if we are on the end of the questions or that we need the results.
         if(counter == subjects.length){
-            checkResults();
+            inportant_form();
         }
         else{
             next_Question();
@@ -129,6 +112,91 @@ function buttons(button_Value){
     }
 }
 
+/**
+ * Shows the container you need
+ * Hides the container you dont need
+ * Creates the form
+ * Creates the next button for the form
+ */
+function inportant_form(){
+    inportant_screen.style.display = "block";
+    questions_screen.style.display = "none";
+    var inportant_container = document.getElementById("inportant_container");
+    subjects.forEach(subject => {  
+        var checkbox = document.createElement('input'); 
+        checkbox.type = "checkbox"; 
+        checkbox.name = "name"; 
+        checkbox.value = "value"; 
+        checkbox.id = subject.title; 
+
+        var label = document.createElement('label');
+        label.id = "label";
+        label.innerHTML = subject.title;
+        inportant_container.appendChild(checkbox); 
+        inportant_container.appendChild(label);
+    });
+    var inportant_button = document.createElement('button');
+    inportant_button.innerHTML = "next";
+    inportant_button.id = "next_btn_form";
+    inportant_button.onclick = function(){
+        save_inport_form();
+    };
+    inportant_container.appendChild(inportant_button);
+}
+/**
+ * Get the id of the container
+ * Make an array with the awnsers of the inputs
+ * Checks if input is checked, if so pushes it in an array.
+ * Calls the checkResults function
+ */
+function save_inport_form(){
+    var inport_form = document.getElementById("inportant_container");
+    //Reference all the CheckBoxes in Table.
+    var checks = inport_form.getElementsByTagName("input");
+    for (var i = 0; i < checks.length; i++) {
+        if (checks[i].checked) {
+            selected_questions.push(checks[i].id);
+        }
+    }
+    checkResults();
+}
+/**
+ * Makes a loop for each party in parties.
+ * Pushes the info in the varibale parties.Points
+ */
+
+function checkResults(){
+    parties.forEach(party => { 
+        var points = getPartyPoints(party.name);
+        partiesPoints.push({
+            name: party.name,
+            points: points,
+            size: party.size,
+            secular: party.secular});
+    });
+    sortByPoints = partiesPoints.slice(0);
+    sortByPoints.sort(function (a, b){ // Sorts the points
+        return  b.points - a.points;    // Return the sorted points backwards so highest gets first.
+    });
+    inportant_screen.style.display = "none";
+    results_screen.style.display = "block";
+    for(i=0; i<parties.length; i++){
+        var partiePercentages = document.createElement("p");
+        partiePercentages.setAttribute("id", sortByPoints[i].name);
+        partiePercentages.setAttribute("class", "parties");
+        partiePercentages.style.display = "inline-block";
+        var calculate = 100/subjects.length*sortByPoints[i].points;
+        partiePercentages.innerText = sortByPoints[i].name + " = " + calculate.toFixed(0) + "%";
+        result_info.appendChild(partiePercentages);
+    }
+
+}
+
+/**
+ * 
+ * @param {array} party 
+ * @returns 
+ */
 // Function to make a point system, if a party has the same position on a statement they gets a point
 function getPartyPoints(party){
     var points = 0;
@@ -151,33 +219,4 @@ function getPartyPoints(party){
      var returnPoints = points;
      points = 0;
      return returnPoints;
-}
-
-// Makes a loop for each party in parties.
-// Puts the info in an array
-function checkResults(){
-    parties.forEach(party => { 
-        var points = getPartyPoints(party.name);
-        partiesPoints.push({
-            name: party.name,
-            points: points,
-            size: party.size,
-            secular: party.secular});
-    });
-    sortByPoints = partiesPoints.slice(0);
-    sortByPoints.sort(function (a, b){ // Sorts the points
-        return  b.points - a.points;    // Return the sorted points backwards so highest gets first.
-    });
-    questions_screen.style.display = "none";
-    results_screen.style.display = "block";
-    for(i=0; i<parties.length; i++){
-        var partiePercentages = document.createElement("p");
-        partiePercentages.setAttribute("id", sortByPoints[i].name);
-        partiePercentages.setAttribute("class", "parties");
-        partiePercentages.style.display = "inline-block";
-        var calculate = 100/subjects.length*sortByPoints[i].points;
-        partiePercentages.innerText = sortByPoints[i].name + " = " + calculate.toFixed(0) + "%";
-        result_info.appendChild(partiePercentages);
-    }
-
 }
